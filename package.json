@@ -1,0 +1,26 @@
+{
+  "name": "guild-developer-security",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Bot de alertas de golpes e fraudes no Telegram",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config index.js",
+    "logs": "heroku logs --app=cafeina-vagas-bot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasdzuc/guild-developer-security-bot.git"
+  },
+  "author": "Lucas Andrade",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucasdzuc/guild-developer-security-bot/issues"
+  },
+  "homepage": "https://github.com/lucasdzuc/guild-developer-security-bot#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "telebot": "^1.4.1"
+  }
+}
