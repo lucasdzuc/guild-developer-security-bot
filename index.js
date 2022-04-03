@@ -1,3 +1,5 @@
+// require("dotenv").config();
+
 import { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } from "./messages.js";
 
 import Telebot from "telebot";
