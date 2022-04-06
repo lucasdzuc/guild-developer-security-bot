@@ -1,8 +1,29 @@
-// require("dotenv").config();
+require("dotenv").config();
+const express = require('express');
+const cors = require('cors');
+const http = require('http');
 
-import { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } from "./messages.js";
+// import express from 'express'
+// import cors from 'cors';
+// import http from 'http';
 
-import Telebot from "telebot";
+const routes = require('./routes');
+
+const app = express();
+const httpServer = http.createServer(app);
+
+const corsOptions = {
+  origin: '*',
+  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS' ,
+  exposedHeaders: [ 'Authorization', 'X-Total-Count', 'X-Requested-With', 'Content-Type', 'x-acess-token' ],
+  preflightContinue: false,
+};
+
+app.use(cors(corsOptions));
+
+const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } = require("../messages.js");
+
+const Telebot = require("telebot");
 
 const bot = new Telebot({
   token: process.env.BOT_TOKEN,
@@ -87,3 +108,7 @@ bot.on(["document", "audio", "animation"], (msg) => {
 });
 
 bot.connect();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(routes);
+httpServer.listen(3333);

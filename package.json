@@ -1,11 +1,11 @@
 {
   "name": "guild-developer-security",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "description": "Bot de alertas de golpes e fraudes no Telegram",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node -r dotenv/config index.js",
+    "start": "node -r dotenv/config src/index.js",
     "logs": "heroku logs --app=cafeina-vagas-bot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,7 +20,10 @@
   },
   "homepage": "https://github.com/lucasdzuc/guild-developer-security-bot#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
     "telebot": "^1.4.1"
   }
 }
