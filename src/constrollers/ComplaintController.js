@@ -5,13 +5,17 @@ module.exports = {
 
   async index(request, response){
     try {
-      const complaints = await Complaint.find();
+      const count = await Complaint.countDocuments().where({ validation: false });
+
+      response.header('X-Total-Count', count);
+
+      const complaints = await Complaint.find().sort({ _id: -1 });
 
       // console.log(complaint);
 
       return response.send({ complaints });
     } catch (error) {
-      console.log("Failed load Complaint: ", error);
+      // console.log("Failed load Complaint: ", error);
       return response.status(400).json({ error: 'Failed load Complaints!' });
     }
   },

@@ -5,8 +5,6 @@ require('dotenv').config();
 // const axios = require('axios');
 const Telebot = require("telebot");
 
-// const api = require('./server/api');
-
 const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } = require("./messages/messages.js");
 
 const { create } = require('./constrollers/ComplaintController');
@@ -60,18 +58,6 @@ bot.on(["text"], async (msg) => {
   } else if (text === "/help") {
     return bot.sendMessage(fromId, helpMessage);
   } else {
-    // try {
-    //   await api.post('complaints', {request: text}, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Access-Control-Request-Headers': '*',
-    //       'api-key': process.env.API_KEY
-    //     },
-    //   });
-    // } catch (error) {
-    //     console.log("ERROR POST API:", error);
-    //     return;
-    // }
 
     await create(msg, );
     
@@ -130,9 +116,10 @@ bot.on(["document", "audio", "animation"], (msg) => {
   return bot.sendMessage(fromId, wrongFormat);
 });
 
-bot.connect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(routes);
+
+bot.connect();
 
 httpServer.listen(PORT, () => { console.info(`Server running port: ${PORT}`) });
