@@ -54,11 +54,8 @@ bot.on(["text"], async (msg) => {
   } else if (text === "/help") {
     return bot.sendMessage(fromId, helpMessage);
   } else {
-    try {
-      await create(msg, );
-    } catch (error) {
-      return;
-    }
+    
+    await create(msg, );
 
     bot.sendMessage(fromId, basicAnswer);
     promise = bot.sendMessage(CHAT_ID, text);
