@@ -7,7 +7,7 @@ Link do perfil do golpista ou fraudador e principalmente nos envie Prints que po
 
 📢 Se você precisa de um suporte entre em contato pela nossa Central de Atendimento: @SAC_GuildDeveloperSecurity`;
 
-const basicAnswer = `✅ Recebemos sua denuncia, agradecemos por nos alertar!
+const basicAnswer = `✅ Recebemos sua denuncia, agradecemos por nos ajudar!
 
 Nossos Administradores irão verificar sua denuncia, após analise ela será postada nos nossos Canais.`;
 

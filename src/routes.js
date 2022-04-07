@@ -8,8 +8,8 @@ const ComplaintController = require('./constrollers/ComplaintController');
 const routes = express.Router();
 
 //ROUTES COMPLAINT
-routes.get('/complaint', ComplaintController.index);
-routes.post('/complaint', ComplaintController.create);
+routes.get('/complaints', ComplaintController.index);
+routes.post('/complaints', ComplaintController.create);
 // routes.update('/complaint/:id', ComplaintController.update);
 
 module.exports = routes;

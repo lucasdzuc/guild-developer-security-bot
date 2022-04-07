@@ -5,11 +5,11 @@ module.exports = {
 
   async index(request, response){
     try {
-      const complaint = await Complaint.find();
+      const complaints = await Complaint.find();
 
-      console.log(complaint);
+      // console.log(complaint);
 
-      return response.send({ complaint });
+      return response.send({ complaints });
     } catch (error) {
       console.log("Failed load Complaint: ", error);
       return response.status(400).json({ error: 'Failed load Complaints!' });
@@ -18,13 +18,17 @@ module.exports = {
 
   async create(request, response){
     try {
-      const { text } = request.body;
+      const { message_id, text, date } = request;
+      // const text = data;
+      // console.log(request);
 
-      await Complaint.create({ text });
+      // console.log("ControllerComplaint:", text);
 
-      return response.status(201);
+      await Complaint.create({ message_id, text, date });
+
+      return response.status(201).send();
     } catch (error) {
-      console.log("Failed create Complaint: ", error);
+      // console.log("Failed create Complaint:");
       return response.status(400).json({ error: 'Failed create Complaint!' }) 
     }
   }

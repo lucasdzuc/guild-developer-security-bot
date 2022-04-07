@@ -7,9 +7,9 @@ mongoose.connect(URI, {
     useUnifiedTopology: true
     // useFindAndModify: false,
 }).then(() => {
-    console.log("Connection successful!")
+    console.log("Database connection successful!")
 }).catch((err) => {
-    console.log("No connection!", err);
+    console.log("No connection database!", err);
 });
 
 // const connection = mongoose.connection;

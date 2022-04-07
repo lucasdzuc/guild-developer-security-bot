@@ -1,7 +1,7 @@
 const mongoose = require('../database');
 
 const ComplaintSchema = new mongoose.Schema({
-    description: {
+    text: {
         type: String,
         require: true,
     },
@@ -9,6 +9,14 @@ const ComplaintSchema = new mongoose.Schema({
         type: Boolean,
         require: true,
         default: false,
+    },
+    message_id: {
+        type: String,
+        require: true,
+    },
+    date: {
+        type: String,
+        require: true,
     },
     createdAt: {
         type: Date,

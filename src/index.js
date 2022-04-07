@@ -2,6 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 require('dotenv').config();
+// const axios = require('axios');
+const Telebot = require("telebot");
+
+const api = require('./server/api');
+
+const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } = require("./messages/messages.js");
+
+const { create } = require('./constrollers/ComplaintController');
+
+const PORT = process.env.PORT || 3333;
 
 // import express from 'express'
 // import cors from 'cors';
@@ -19,11 +29,13 @@ const corsOptions = {
   preflightContinue: false,
 };
 
+
 app.use(cors(corsOptions));
 
-const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } = require("./messages/messages.js");
+app.use(routes);
+app.use(express.urlencoded({ extended: false }));
 
-const Telebot = require("telebot");
+
 
 const bot = new Telebot({
   token: process.env.BOT_TOKEN,
@@ -38,19 +50,36 @@ const bot = new Telebot({
 
 const CHAT_ID = process.env.CHAT_ID_PROFILE;
 
-bot.on(["text"], (msg) => {
+bot.on(["text"], async (msg) => {
   let text = msg.text;
   let fromId = msg.from.id;
   let messageId = msg.message_id;
   let promise;
 
-  console.log("[text message]: ", JSON.stringify(msg));
+  console.log("[text message]:", JSON.stringify(msg));
+
+  console.log(msg);
 
   if(text === "/start"){
     return bot.sendMessage(fromId, welcomeMessage);
   } else if (text === "/help") {
     return bot.sendMessage(fromId, helpMessage);
   } else {
+    // try {
+    //   await api.post('complaints', {request: text}, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Access-Control-Request-Headers': '*',
+    //       'api-key': process.env.API_KEY
+    //     },
+    //   });
+    // } catch (error) {
+    //     console.log("ERROR POST API:", error);
+    //     return;
+    // }
+
+    await create(msg, );
+    
     bot.sendMessage(fromId, basicAnswer);
 
     promise = bot.sendMessage(CHAT_ID, text);
@@ -108,6 +137,6 @@ bot.on(["document", "audio", "animation"], (msg) => {
 
 bot.connect();
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(routes);
-httpServer.listen(3333);
+httpServer.listen(PORT, () => {
+  console.info(`Server running port: ${PORT}`)
+});

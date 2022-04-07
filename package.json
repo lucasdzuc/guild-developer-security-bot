@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node -r dotenv/config src/index.js",
-    "foi": "nodemon src/index.js",
+    "dev": "nodemon src/index.js",
     "logs": "heroku logs --app=bot-gds",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/lucasdzuc/guild-developer-security-bot#readme",
   "dependencies": {
+    "axios": "^0.26.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
