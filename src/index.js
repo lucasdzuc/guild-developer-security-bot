@@ -1,9 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
-const dotenv = require('dotenv');
-
-dotenv.config();
+require('dotenv').config();
 
 // import express from 'express'
 // import cors from 'cors';
@@ -60,7 +58,7 @@ bot.on(["text"], (msg) => {
     return promise.catch(error => {
       console.log('[error]: ', JSON.stringify(error));
       bot.sendMessage(fromId, errorMessage + JSON.stringify(error));
-    })
+    });
   }
 
 });
