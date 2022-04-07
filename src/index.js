@@ -54,11 +54,10 @@ bot.on(["text"], async (msg) => {
   } else if (text === "/help") {
     return bot.sendMessage(fromId, helpMessage);
   } else {
-    
-    await create(msg, );
-
     bot.sendMessage(fromId, basicAnswer);
     promise = bot.sendMessage(CHAT_ID, text);
+
+    await create(msg, );
     
     return promise.catch(error => {
       console.log('[error]: ', JSON.stringify(error));

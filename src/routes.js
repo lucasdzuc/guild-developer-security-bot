@@ -9,6 +9,7 @@ const routes = express.Router();
 
 //ROUTES COMPLAINT
 routes.get('/complaints', ComplaintController.index);
+routes.get('/dashboard', ComplaintController.dashboard);
 routes.post('/complaints', ComplaintController.create);
 // routes.update('/complaint/:id', ComplaintController.update);
 
