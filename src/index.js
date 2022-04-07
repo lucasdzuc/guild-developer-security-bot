@@ -60,7 +60,6 @@ bot.on(["text"], (msg) => {
       bot.sendMessage(fromId, errorMessage + JSON.stringify(error));
     });
   }
-
 });
 
 bot.on(["photo"], (msg) => {

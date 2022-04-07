@@ -18,9 +18,9 @@ module.exports = {
 
   async create(request, response){
     try {
-      const { description } = request.body;
+      const { text } = request.body;
 
-      await Complaint.create({ description });
+      await Complaint.create({ text });
 
       return response.status(201);
     } catch (error) {
