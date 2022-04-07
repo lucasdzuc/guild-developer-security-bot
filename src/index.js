@@ -1,7 +1,9 @@
-require("dotenv").config();
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 // import express from 'express'
 // import cors from 'cors';
@@ -21,7 +23,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } = require("../messages.js");
+const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } = require("./messages/messages.js");
 
 const Telebot = require("telebot");
 

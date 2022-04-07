@@ -10,6 +10,6 @@ const routes = express.Router();
 //ROUTES COMPLAINT
 routes.get('/complaint', ComplaintController.index);
 routes.post('/complaint', ComplaintController.create);
-routes.update('/complaint/:id', ComplaintController.update);
+// routes.update('/complaint/:id', ComplaintController.update);
 
 module.exports = routes;

@@ -7,6 +7,8 @@ module.exports = {
     try {
       const complaint = await Complaint.find();
 
+      console.log(complaint);
+
       return response.send({ complaint });
     } catch (error) {
       console.log("Failed load Complaint: ", error);
