@@ -9,16 +9,12 @@ const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, err
 
 const { create } = require('./constrollers/ComplaintController');
 
-const PORT = process.env.PORT || 3333;
-
-// import express from 'express'
-// import cors from 'cors';
-// import http from 'http';
-
 const routes = require('./routes');
 
 const app = express();
 const httpServer = http.createServer(app);
+
+const PORT = process.env.PORT || 3333;
 
 const corsOptions = {
   origin: '*',
@@ -51,20 +47,22 @@ bot.on(["text"], async (msg) => {
 
   console.log("[text message]:", JSON.stringify(msg));
 
-  console.log(msg);
+  // console.log(msg);
 
   if(text === "/start"){
     return bot.sendMessage(fromId, welcomeMessage);
   } else if (text === "/help") {
     return bot.sendMessage(fromId, helpMessage);
   } else {
+    try {
+      await create(msg, );
+    } catch (error) {
+      return;
+    }
 
-    await create(msg, );
-    
     bot.sendMessage(fromId, basicAnswer);
-
     promise = bot.sendMessage(CHAT_ID, text);
-
+    
     return promise.catch(error => {
       console.log('[error]: ', JSON.stringify(error));
       bot.sendMessage(fromId, errorMessage + JSON.stringify(error));
