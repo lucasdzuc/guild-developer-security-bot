@@ -5,7 +5,7 @@ require('dotenv').config();
 // const axios = require('axios');
 const Telebot = require("telebot");
 
-const api = require('./server/api');
+// const api = require('./server/api');
 
 const { basicAnswer, floodMessage, welcomeMessage, helpMessage, wrongFormat, errorMessage } = require("./messages/messages.js");
 
@@ -31,11 +31,6 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions));
-
-app.use(routes);
-app.use(express.urlencoded({ extended: false }));
-
-
 
 const bot = new Telebot({
   token: process.env.BOT_TOKEN,
@@ -137,6 +132,7 @@ bot.on(["document", "audio", "animation"], (msg) => {
 
 bot.connect();
 app.use(express.json());
-httpServer.listen(PORT, () => {
-  console.info(`Server running port: ${PORT}`)
-});
+app.use(express.urlencoded({ extended: false }));
+app.use(routes);
+
+httpServer.listen(PORT, () => { console.info(`Server running port: ${PORT}`) });
