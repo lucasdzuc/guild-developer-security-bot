@@ -66,7 +66,7 @@ bot.on(["text"], async (msg) => {
   }
 });
 
-bot.on(["photo"], (msg) => {
+bot.on(["photo"], async (msg) => {
   let photo = msg.photo[0].file_id;
   console.log('photoo', photo);
   let fromId = msg.from.id;
@@ -77,8 +77,9 @@ bot.on(["photo"], (msg) => {
   console.log("[photo message]: ", JSON.stringify(msg));
 
   bot.sendMessage(fromId, basicAnswer);
-
   promise = bot.sendPhoto(CHAT_ID, photo, { caption });
+
+  await create(msg, );
   
   return promise.catch(error => {
     console.log('[error]: ', JSON.stringify(error));
@@ -86,7 +87,7 @@ bot.on(["photo"], (msg) => {
   });
 });
 
-bot.on(["forward"], (msg) => {
+bot.on(["forward"], async (msg) => {
   let text = msg.text;
   let fromId = msg.from.id;
   let messageId = msd.message_id;
@@ -95,8 +96,9 @@ bot.on(["forward"], (msg) => {
   console.log("[forward message]: ", JSON.stringify(msg));
 
   bot.sendMessage(fromId, basicAnswer);
-
   promise = bot.sendMessage(CHAT_ID, text);
+
+  await create(msg, );
 
   return promise.catch(error => {
     console.log('[error]: ', JSON.stringify(error));
